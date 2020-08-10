@@ -1,0 +1,7 @@
+useEffect(()=>{
+
+},[])
+
+It is a snippet of code which runs on a specific condition/variables
+Usage here:->
+when the row components loads on the screen,a piece of code is run to  makes a request to the tmdb database

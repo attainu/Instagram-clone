@@ -31,3 +31,9 @@ suppose if that [movies] ie []-bracket is not empty,then its gonna run once and 
 in const[movie,setMovie]-every time the movie will change it will change
 
 every time the row component will load this piece of code will fire always
+
+Things to implement in movie details section:->(MovieDetails.js)
+1.Image(poster_path/backdrop_path)
+2.Average Vote
+3.Overview
+4.Release Date  

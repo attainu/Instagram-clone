@@ -9,5 +9,10 @@ const request = {
   fetchHorrorMovies: `${BASE_URL}/discover/movie/?api_key=${API_KEY}&with_genres=27`,
   fetchRomanceMovies: `${BASE_URL}/discover/movie/?api_key=${API_KEY}&with_genres=10749`,
   fetchDocumentries: `${BASE_URL}/discover/movie/?api_key=${API_KEY}&with_genres=99`,
+
+  fetchPopular: `${BASE_URL}/tv/popular?api_key=${API_KEY}&language=en-US&page=3`,
+  fetchOnAir: `${BASE_URL}/tv/top_rated?api_key=${API_KEY}&language=en-US&page=8`,
+  fetchAdventure: `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=10759`,
+  fetchMysterious: `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=9648`,
 };
 export default request;

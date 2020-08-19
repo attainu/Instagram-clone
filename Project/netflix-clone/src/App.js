@@ -8,6 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Button, Input } from "@material-ui/core";
 import { auth } from "./firebase";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 // import {db} from './firebase';
 
 function getModalStyle() {
@@ -70,9 +72,55 @@ function App() {
     };
   }, [user, username]); //gonna run once
 
-  // const handleClose = ()=> {
-  //   setOpen(false)
-  // };
+  const [movieList, setMovieList] = useState();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const netflixOriginals = await axios.get(request.fetchNetflixOriginals);
+        const trending = await axios.get(request.fetchTrending);
+        const topRated = await axios.get(request.fetchTopRated);
+        const actionMovies = await axios.get(request.fetchActionMovies);
+        const horrorMovies = await axios.get(request.fetchHorrorMovies);
+        const comedyMovies = await axios.get(request.fetchComedyMovies);
+        const romanceMovies = await axios.get(request.fetchRomanceMovies);
+        const documentries = await axios.get(request.fetchDocumentries);
+
+        const movies = [
+          {
+            label: "Netflix Originals",
+            data: [...netflixOriginals.data.results],
+          },
+          { label: "Trending", data: [...trending.data.results] },
+          {
+            label: "Top Rated",
+            data: [...topRated.data.results],
+          },
+          { label: "Documentries", data: [...documentries.data.results] },
+          {
+            label: "Action Movies",
+            data: [...actionMovies.data.results],
+          },
+          { label: "Horrir Movies", data: [...horrorMovies.data.results] },
+          {
+            label: "Comedy Movies",
+            data: [...comedyMovies.data.results],
+          },
+          { label: "Romantic Movies", data: [...romanceMovies.data.results] },
+        ];
+
+        setMovieList([...movies]);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
+      return request;
+    }
+    fetchData();
+  }, []);
 
   const signUp = (event) => {
     event.preventDefault();
@@ -92,7 +140,10 @@ function App() {
     // setOpenSign(false);
   };
 
-  return (
+  const history = useHistory();
+  const onMovieSelect = (id) => history.push("/" + id);
+
+  return !loading ? (
     <div className="app">
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
@@ -159,27 +210,21 @@ function App() {
           </Button>
         </div>
       )}
-
-      {/* Banner */}
-      <Nav />
+      <Nav
+        label="Search Movies"
+        onChange={(event, value, reason) => {
+          onMovieSelect(value.id);
+        }}
+        movieList={movieList}
+      />
       <Banner />
 
-      {/* Navbar */}
-
-      <Row
-        title="Netflix Originals"
-        fetchUrl={request.fetchDocumentries}
-        isLargeRow={true}
-      />
-
-      <Row title="Trending Now" fetchUrl={request.fetchTrending} />
-      <Row title="Toprated Movies" fetchUrl={request.fetchDocumentries} />
-      <Row title="Action Movies" fetchUrl={request.fetchActionMovies} />
-      <Row title="Comedy Movies" fetchUrl={request.fetchComedyMovies} />
-      <Row title="Horror Movies" fetchUrl={request.fetchHorrorMovies} />
-      <Row title="Romance Movies" fetchUrl={request.fetchRomanceMovies} />
-      <Row title="Documentary Movies" fetchUrl={request.fetchDocumentries} />
+      {movieList?.map((row) => (
+        <Row title={row.label} movieList={row.data} />
+      ))}
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 }
 

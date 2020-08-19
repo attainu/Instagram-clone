@@ -10,31 +10,12 @@ import {
 
 const base_url = "https://image.tmdb.org/t/p/original";
 
-function Row({ title, fetchUrl, isLargeRow }) {
+function Row({ title, movieList, isLargeRow }) {
   const [movies, setMovies] = useState([]);
-  const [movieDetail, setMovieDetail] = useState("amitesh");
-  console.log(movieDetail);
-  // A snippet of code which runs on a specific conditions/variables-hook concept
-  useEffect(() => {
-    // if [] is empty,run once when the row loads and don't run again
-    // method 1
-    async function fetchData() {
-      const request = await axios.get(fetchUrl);
-      console.log(request.data.results);
-      setMovies(request.data.results);
-      return request;
 
-      // method 2
-      // axios.get(fetchUrl)
-      // .then(response => {
-      //   console.log(response.data);
-      // })
-      // .catch(error => {
-      //   console.log(error);
-      // });
-    }
-    fetchData();
-  }, [fetchUrl]);
+  useEffect(() => {
+    setMovies(movieList);
+  }, [movieList]);
 
   let history = useHistory();
   const handleMovie = (id) => {

@@ -1,14 +1,18 @@
 .nav {
-  position: fixed;
+  position: absolute;
   top: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
   width: 80%;
+  color: white;
   /* padding: 20px; */
 }
 
 .nav_logo {
-  width: 12.5%;
+  display: flex;
+  width: 11.48%;
   object-fit: contain;
 }
 

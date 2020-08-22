@@ -23,7 +23,8 @@ function RowTv({ title, fetchUrl, isLargeRow }) {
   }, [fetchUrl]);
   let history = useHistory();
   const handleTv = (id) => {
-    history.push("/" + id);
+    history.push("/tv/" + id);
+    console.log(id);
   };
 
   return (

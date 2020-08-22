@@ -103,7 +103,7 @@ function App() {
             label: "Action Movies",
             data: [...actionMovies.data.results],
           },
-          { label: "Horrir Movies", data: [...horrorMovies.data.results] },
+          { label: "Horror Movies", data: [...horrorMovies.data.results] },
           {
             label: "Comedy Movies",
             data: [...comedyMovies.data.results],

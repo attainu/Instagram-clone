@@ -18,7 +18,7 @@ function TvDetails(props) {
     axios
       .get(
         `
-      https://api.themoviedb.org/3/movie/${id}?api_key=c2d5579d618254f564c00320d87fad1e&language=en-US
+      https://api.themoviedb.org/3/tv/${id}?api_key=c2d5579d618254f564c00320d87fad1e&language=en-US
       `
       )
       .then((response) => {
@@ -37,7 +37,7 @@ function TvDetails(props) {
     if (trailerUrl) {
       setTrailerUrl("");
     } else {
-      movieTrailer(TvDetail?.original_title || "")
+      movieTrailer(TvDetail?.name || "")
         .then((url) => {
           const urlParams = new URLSearchParams(new URL(url).search);
           setTrailerUrl(urlParams.get("v"));
@@ -62,12 +62,12 @@ function TvDetails(props) {
     <header
       className="bannerA"
       style={{
-        backgroundImage: `url("https://image.tmdb.org/t/p/original/${movieDetail?.backdrop_path}") `,
+        backgroundImage: `url("https://image.tmdb.org/t/p/original/${TvDetail?.backdrop_path}") `,
         backgroundRepeat: "no-repeat",
       }}
     >
       <div className={`banner_contentsA ${contentClass}`}>
-        <h1 className="banner_titleA">{movieDetail?.original_title}</h1>
+        <h1 className="banner_titleA">{TvDetail?.name}</h1>
 
         <div className="banner_buttonsA">
           <button className="banner_buttonA" onClick={playTrailer}>
@@ -75,7 +75,7 @@ function TvDetails(props) {
           </button>
           <div className="banner_buttonA" style={{ marginLeft: "8px" }}>
             <span style={{ color: "yellow" }}> * </span>
-            {movieDetail?.vote_average} / 10
+            {TvDetail?.vote_average} / 10
             <span style={{ color: "yellow" }}> *</span>
           </div>
         </div>
@@ -87,14 +87,14 @@ function TvDetails(props) {
         )}
 
         <div className="genres">
-          {movieDetail?.genres?.map((genre, i) => (
+          {TvDetail?.genres?.map((genre, i) => (
             <div className="genre" style={{ marginRight: "8px" }} key={i}>
               {genre.name}
             </div>
           ))}
         </div>
 
-        <h1 className="banner_descriptionA">{movieDetail?.overview}</h1>
+        <h1 className="banner_descriptionA">{TvDetail?.overview}</h1>
         {/* {truncate(movie?.overview, 150)} */}
       </div>
 

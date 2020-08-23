@@ -199,7 +199,15 @@ function App() {
       </Modal>
 
       {user ? (
-        <Button onClick={() => auth.signOut()}>Logout</Button>
+        <div className="app_loginContainer ">
+          <Button
+            onClick={() => auth.signOut()}
+            style={{ color: "#ffffff" }}
+            classes={{ text: "btn" }}
+          >
+            <div className="btn">Logout</div>
+          </Button>
+        </div>
       ) : (
         <div className="app_loginContainer">
           <Button classes={{ text: "btn" }} onClick={() => setOpenSignIn(true)}>

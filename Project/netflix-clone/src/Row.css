@@ -1,6 +1,5 @@
 .row {
   color: white;
-  margin-left: 20px;
   background-color: black;
 }
 
@@ -21,6 +20,7 @@
   max-height: 100px;
   margin-right: 10px;
   transition: 450ms;
+  cursor: pointer;
 }
 
 .row_poster:hover {

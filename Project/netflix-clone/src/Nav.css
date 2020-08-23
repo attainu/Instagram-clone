@@ -7,6 +7,8 @@
   cursor: pointer;
   width: 80%;
   color: white;
+  background-color: black;
+
   /* padding: 20px; */
 }
 
@@ -19,4 +21,13 @@
 .nav_avatar {
   width: 2.81%;
   object-fit: contain;
+}
+
+.autoComplete {
+  background-color: #ffffff;
+  /* height: 40px; */
+  border-radius: 6px;
+  padding: 0px;
+  width: 300px;
+  margin: 2px;
 }

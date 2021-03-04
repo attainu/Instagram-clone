@@ -1,9 +1,0 @@
-Firebase:->
-Firebase gives a real time database(on of the biggest advantage of using firebase)
-3 lines of codes is there to set a real time 2-way sync with ypur database.Simplicity is the king
-It is hybrid of sql and nosql database
-
-
-c2d5579d618254f564c00320d87fad1e
-
-const API_KEY = "c2d5579d618254f564c00320d87fad1e";
